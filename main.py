@@ -13,6 +13,7 @@ def TCPstart():
         print(user, " connected")
         data = user.recv(4096) # read first 4K of data
         handler(data)
+        user.close()
 
 
 def handler(data):   
