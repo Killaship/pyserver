@@ -15,7 +15,10 @@ def TCPstart():
         handler(data)
 
 
-def handler(data):
-    return b"test" # replace later
+def handler(data):   
+    response = b"HTTP/1.1 200 OK\r\n"
+    bline = b"\r\n"
+    body = b"test, hello!"
+    return b"".join([response, bline, body])
     
 TCPstart()
