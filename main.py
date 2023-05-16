@@ -6,6 +6,7 @@ try:
         conf = f.readlines()
         host = conf[0].strip()
         port = int(conf[1].strip())
+        version =  int(conf[2].strip())
     f.close()
     print("Read config file successfully!")
 except Exception as e:
@@ -28,8 +29,13 @@ def TCPstart():
 
 def handler(data):   
     response = b"HTTP/1.1 200 OK\r\n"
+    header = b"".join([
+        bytes(f"Server: pyserver {version}\r\n")
+        bytes(f"Content-Type: text/html\r\n")
+    ])
     bline = b"\r\n"
     body = b"test, hello!"
-    return b"".join([response, bline, body])
+    return b"".join([response, header, bline, body])
+
     
 TCPstart()
