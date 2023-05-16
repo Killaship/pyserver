@@ -9,7 +9,7 @@ def TCPstart():
     sock.listen(5) # normal max is 5 users queued
     print("Listening on ", sock.getsockname())
     while True:
-        user = sock.accept()
+        user, addr = sock.accept()
         print(user, " connected")
         data = user.recv(4096) # read first 4K of data
         user.sendall(data) # echo everything back
