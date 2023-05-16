@@ -10,6 +10,7 @@ try:
     print("Read config file successfully!")
 except:
     print("Error reading pyserver.conf!")
+    raise SystemExit(1)
 
 def TCPstart():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
