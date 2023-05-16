@@ -5,7 +5,7 @@ try:
     with open('pyserver.conf', 'r') as f:
         conf = f.readlines()
         host = conf[0].strip()
-        port = conf[1].strip()
+        port = int(conf[1].strip())
     f.close()
     print("Read config file successfully!")
 except Exception as e:
