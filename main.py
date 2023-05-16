@@ -5,7 +5,7 @@ class TCP:
     port = 80
     def TCPstart():
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.bind(host, port)
+        sock.bind(TCP.host, TCP.port)
         s.listen(5) # normal max is 5 users queued
         print("Listening on ", s.getsockname())
         while True:
