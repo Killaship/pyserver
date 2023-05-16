@@ -1,7 +1,15 @@
 import socket
 
-host = "127.0.0.1" # TODO, move this to config file
-port = 80
+
+try:
+    with open('pyserver.conf', 'r') as f:
+        conf = f.readlines()
+        host = conf.strip()[0]
+        port = conf.strip()[1]
+    f.close()
+    print("Read config file successfully!")
+except:
+    print("Error reading pyserver.conf!")
 
 def TCPstart():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
