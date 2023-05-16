@@ -1,6 +1,6 @@
 import socket
 
-host = "127.0.0.1"
+host = "127.0.0.1" # TODO, move this to config file
 port = 80
 
 def TCPstart():
@@ -12,6 +12,10 @@ def TCPstart():
         user, addr = sock.accept()
         print(user, " connected")
         data = user.recv(4096) # read first 4K of data
-        user.sendall(data) # echo everything back
+        handler(data)
 
+
+def handler(data):
+    return b"test" # replace later
+    
 TCPstart()
