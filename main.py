@@ -8,8 +8,8 @@ try:
         port = conf.strip()[1]
     f.close()
     print("Read config file successfully!")
-except:
-    print("Error reading pyserver.conf!")
+except Exception as e:
+    print("Error reading pyserver.conf!\n\n", e)
     raise SystemExit(1)
 
 def TCPstart():
