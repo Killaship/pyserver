@@ -4,8 +4,8 @@ import socket
 try:
     with open('pyserver.conf', 'r') as f:
         conf = f.readlines()
-        host = conf.strip()[0]
-        port = conf.strip()[1]
+        host = conf[0].strip()
+        port = conf[1].strip()
     f.close()
     print("Read config file successfully!")
 except Exception as e:
