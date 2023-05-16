@@ -12,7 +12,8 @@ def TCPstart():
         user, addr = sock.accept()
         print(user, " connected")
         data = user.recv(4096) # read first 4K of data
-        handler(data)
+        user.sendall(handler(data))
+        
         user.close()
 
 
