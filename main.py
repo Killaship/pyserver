@@ -51,7 +51,7 @@ def TCPstart():
         print("Listening on ", sock.getsockname())
     while True:
         user, addr = sock.accept()
-        log(f"{user} connected, time =", str(time.time()))
+        log(f"{user} connected, time = {str(time.time())}")
         if(verbosity == 2):
             print(user, " connected, time =", time.time())
         elif(verbosity == 1):
@@ -60,7 +60,7 @@ def TCPstart():
         user.sendall(handler(data))
         
         user.close()
-        log(str("connection closed, time =", str(time.time())))
+        log(f"connection closed, time =, {str(time.time())}")
         if(verbosity == 2):
             print("connection closed, time =", time.time())
         elif(verbosity == 1):
