@@ -91,7 +91,7 @@ def generrbody(code):
             
 def handler_GET(request):
     loc = request.uri.strip('/')
-    if(os.path.exists(loc):
+    if(os.path.exists(loc)):
         response = b"HTTP/1.1 200 OK\r\n"
         with open(loc, 'r') as f
             body = bytes(f.read())
