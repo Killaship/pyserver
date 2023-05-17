@@ -51,7 +51,7 @@ def TCPstart():
         if(verbosity == 2):
             print("connection closed, time =", time.time())
         elif(verbosity == 1):
-            print("connection closed"))
+            print("connection closed")
 class Request:
     def __init__(self, data):
         self.method = None
