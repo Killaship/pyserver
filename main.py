@@ -81,7 +81,7 @@ def handler(data):
     request = Request(data)
     
     try:
-        methodhandler = getattr('handler_%s' % request.method) # useful hack I found
+        methodhandler = ('handler_%s' % request.method) # useful hack I found
     except AttributeError:
         handler = handler_501
     response = methodhandler(request)
