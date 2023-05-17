@@ -87,7 +87,7 @@ class Request:
             self.httpver = chunks[2].decode()
             
 def generrbody(code):
-    return b"<b><h1>HTTP"+code+"</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
+    return str("<b><h1>HTTP"+code+"</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>")
             
 def handler_GET(request):
     loc = request.uri.strip('/')
@@ -97,7 +97,7 @@ def handler_GET(request):
             body = bytes(str(html.read()))
     else:
         response = b"HTTP/1.1 404 Not Found\r\n"
-        body = generrbody("404 Not Found")
+        body = bytes(generrbody("404 Not Found"))
     
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
