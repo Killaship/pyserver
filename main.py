@@ -41,13 +41,17 @@ def TCPstart():
     while True:
         user, addr = sock.accept()
         if(verbosity == 2):
-            print(user, " connected, time=", time.time())
+            print(user, " connected, time =", time.time())
         elif(verbosity == 1):
             print("new connection, time =", time.time())
         data = user.recv(4096) # read first 4K of data
         user.sendall(handler(data))
         
         user.close()
+        if(verbosity == 2):
+            print("connection closed, time =", time.time())
+        elif(verbosity == 1):
+            print("connection closed"))
 class Request:
     def __init__(self, data):
         self.method = None
