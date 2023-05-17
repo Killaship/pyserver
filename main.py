@@ -13,6 +13,9 @@ except Exception as e:
 def log(input):
     logfile.write(f"\n[{str(time.time().strip(' '))}]\n{str(input)}\n")
     
+def cleanup():
+    logfile.close()
+    
 
 try:
     with open('pyserver.conf', 'r') as f:
@@ -120,5 +123,12 @@ def handler(data):
     elif(verbosity == 1):
         print("responded")
     return response
-    
-TCPstart()
+
+
+
+
+if __name__ == '__main__':
+    try:
+        TCPstart()
+    except KeyboardInterrupt:
+        cleanup()
