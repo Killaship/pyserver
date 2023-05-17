@@ -7,7 +7,7 @@ current_module = sys.modules[__name__]
 try:
     logfile = open(f'std.log-{time.time().strip(" ")}', 'w')
 except Exception as e:
-    print("Error opening log file!\n\n", e)\
+    print("Error opening log file!\n\n", e)
     raise SystemExit(1)
 
 def log(input):
