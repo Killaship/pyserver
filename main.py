@@ -132,4 +132,7 @@ if __name__ == '__main__':
     try:
         TCPstart()
     except KeyboardInterrupt:
+        if(verbosity >= 1):
+            print("server exited, cleaning up\n")
+        log("server exited, cleaning up\n")
         cleanup()
