@@ -29,11 +29,9 @@ def TCPstart():
 
 def handler(data):   
     response = b"HTTP/1.1 200 OK\r\n"
-    temp = f"Server: pyserver {version}\r\n"
-    temp2 = f"Content-Type: text/html\r\n"
     header = b"".join([
-        temp.encode('utf-8')
-        temp2.encode('utf-8')
+        bytes(f"Server: pyserver {version}\r\n", 'utf-8')
+        bytes(f"Content-Type: text/html\r\n", 'utf-8')
     ])
     bline = b"\r\n"
     body = b"test, hello!"
