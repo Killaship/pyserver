@@ -93,7 +93,7 @@ def handler_GET(request):
     if(os.path.exists(loc)):
         response = b"HTTP/1.1 200 OK\r\n"
         with open(loc, 'r') as html:
-            body = bytes(html.read())
+            body = bytes(html.read(), "utf-8")
     else:
         response = b"HTTP/1.1 404 Not Found\r\n"
         body = b"<b><h1>HTTP 404: Not Found</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
