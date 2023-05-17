@@ -6,7 +6,7 @@ try:
         conf = f.readlines()
         host = conf[0].strip()
         port = int(conf[1].strip())
-        version =  conf[2].strip()
+        version =  str(conf[2].strip())
     f.close()
     print("Read config file successfully!")
     
