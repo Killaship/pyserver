@@ -87,7 +87,7 @@ def handler(data):
     except AttributeError:
         methodhandler = handler_501
     response = methodhandler(request)
-    print("response:\n"+str(data)+"\n")
+    print("response:\n"+str(response)+"\n")
     return response
     
 TCPstart()
