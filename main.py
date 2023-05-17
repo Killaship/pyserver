@@ -85,24 +85,36 @@ class Request:
             self.uri = chunks[1].decode()
         if(len(chunks) > 2):
             self.httpver = chunks[2].decode()
-def handler_GET(data):
-    response = b"HTTP/1.1 200 OK\r\n"
+            
+def generrbody(code):
+    return f"<b><h1>HTTP {code}</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
+            
+def handler_GET(request):
+    loc = request.uri.strip('/')
+    if(os.path.exists(loc):
+        response = b"HTTP/1.1 200 OK\r\n"
+        with open(loc, 'r') as f
+            body = bytes(f.read())
+    else:
+        response = b"HTTP/1.1 404 Not Found\r\n"
+        body = generrbody("404 Not Found")
+    
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
         b"Content-Type: text/html\r\n"
     ])
     bline = b"\r\n"
-    body = bytes(source, "utf-8")
+    
     return b"".join([response, header, bline, body])
 
-def handler_501(data): # TODO: move error pages to separate folder
+def handler_501(request): # TODO: move error pages to separate folder
     response = b"HTTP/1.1 501 Not Implemented\r\n"
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
         b"Content-Type: text/html\r\n"
     ])
     bline = b"\r\n"
-    body = b"<b><h1>HTTP 501: Not Implemented</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
+    body = generrbody("501 Not Implemented")
     return b"".join([response, header, bline, body])
 
 
