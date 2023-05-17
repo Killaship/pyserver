@@ -81,7 +81,7 @@ def handler_501(data): # TODO: move error pages to separate folder
 
 def handler(data):   
     request = Request(data)
-    print("new request:\n"+str(data)+"\n")
+    print("new request:\n"+str(data))
     try:
         methodhandler = getattr(current_module, 'handler_%s' % request.method) # useful hack I found
     except AttributeError:
