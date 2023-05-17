@@ -10,8 +10,8 @@ See the configuration guide for more on how to use that.
 Run ```sudo python3 main.py``` to run the web server. (You might not need the sudo on your system, but I did when I tested it.)
 
 Some tools that could work to test the implementation of HTTP are these: 
-- https://reqbin.
-- https://resttesttest.
+- https://reqbin.com
+- https://resttesttest.com
 - https://hurl.dev
 
 
@@ -26,6 +26,6 @@ Here's a full overview:
 - The second line is the port to run the server on.
 - Third line is the server version, which goes in the HTTP response sent to clients.
 - The fourth line contains the location of the source file to be served.
-- The fifth line contains the verbosity level of the server program. 2 is full debug, everything printed out. 1 is basic logging. 0 prints out nothing at all, besides errors.
+- The fifth line contains the verbosity level of the server program. 2 is full debug, everything printed out. 1 is basic logging. 0 prints out nothing at all, besides errors. Regardless of verbosity settings, the program will still log at full verbosity in its log files.
 
 Please see the text files under ```logs/examples``` for examples of the server verbosity settings.
