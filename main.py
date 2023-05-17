@@ -1,5 +1,5 @@
 import socket
-
+import time
 
 try:
     with open('pyserver.conf', 'r') as f:
@@ -34,7 +34,7 @@ def TCPstart():
     print("Listening on ", sock.getsockname())
     while True:
         user, addr = sock.accept()
-        print(user, " connected")
+        print(user, " connected, time=", time.time())
         data = user.recv(4096) # read first 4K of data
         user.sendall(handler(data))
         
