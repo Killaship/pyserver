@@ -10,7 +10,7 @@ try:
         port = int(conf[1].strip())
         version = str(conf[2].strip())
         sourcefile = str(conf[3].strip())
-        verbosity = int(conf[3].strip())
+        verbosity = int(conf[4].strip())
     f.close()
     print("Read config file successfully!")
     
