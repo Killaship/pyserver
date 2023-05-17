@@ -1,7 +1,18 @@
 import socket
 import time
 import sys
+
+
 current_module = sys.modules[__name__]
+try:
+    logfile = open(f'std.log-{time.time().strip(" ")}', 'w')
+except Exception as e:
+    print("Error opening log file!\n\n", e)\
+    raise SystemExit(1)
+
+def log(input):
+    logfile.write("\n", str(input), "\n")
+    
 
 try:
     with open('pyserver.conf', 'r') as f:
@@ -40,6 +51,7 @@ def TCPstart():
         print("Listening on ", sock.getsockname())
     while True:
         user, addr = sock.accept()
+        log(str(user, " connected, time =", time.time()))
         if(verbosity == 2):
             print(user, " connected, time =", time.time())
         elif(verbosity == 1):
@@ -48,6 +60,7 @@ def TCPstart():
         user.sendall(handler(data))
         
         user.close()
+        log(str("connection closed, time =", time.time()))
         if(verbosity == 2):
             print("connection closed, time =", time.time())
         elif(verbosity == 1):
@@ -95,6 +108,7 @@ def handler(data):
         print("new request:\n"+str(data))
     elif(verbosity == 1):
         print("new request")
+    log(str("new request:\n"+str(data)))
     try:
         methodhandler = getattr(current_module, 'handler_%s' % request.method) # useful hack I found
     except AttributeError:
