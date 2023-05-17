@@ -14,7 +14,7 @@ The server version is A, nice to know, and B, goes in the HTTP response sent to 
 Run ```sudo python3 main.py``` to run the web server. (You might not need the sudo on your system, but I did when I tested it.)
 
 Some tools that could work to test the implementation of HTTP are these: 
-- [https://reqbin.com/]
-- [https://resttesttest.com/]
-- [https://hurl.dev/]
+- https://reqbin.
+- https://resttesttest.
+- https://hurl.dev
 I'm not sponsored or endorsed by them or anything, but I found them off google, and they look good to me.
