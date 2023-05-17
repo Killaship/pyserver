@@ -87,7 +87,7 @@ class Request:
             self.httpver = chunks[2].decode()
             
 def generrbody(code):
-    return "<b><h1>HTTP"+code+"</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
+    return b"<b><h1>HTTP"+code+"</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
             
 def handler_GET(request):
     loc = request.uri.strip('/')
