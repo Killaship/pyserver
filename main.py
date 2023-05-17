@@ -1,5 +1,7 @@
 import socket
 import time
+import sys
+current_module = sys.modules[__name__]
 
 try:
     with open('pyserver.conf', 'r') as f:
@@ -81,9 +83,9 @@ def handler(data):
     request = Request(data)
     handlers = Handlers
     try:
-        methodhandler = (handlers, 'handler_%s' % request.method) # useful hack I found
+        methodhandler = (current_module, 'handler_%s' % request.method) # useful hack I found
     except AttributeError:
-        handler = handler_501
+        methodhandler = handler_501
     response = methodhandler(request)
     return response
     
