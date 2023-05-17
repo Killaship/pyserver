@@ -12,7 +12,8 @@ try:
         sourcefile = str(conf[3].strip())
         verbosity = int(conf[4].strip())
     f.close()
-    print("Read config file successfully!")
+    if(verbosity >= 1):
+        print("Read config file successfully!")
     
 except Exception as e:
     print("Error reading pyserver.conf!\n\n", e)
@@ -22,7 +23,8 @@ try:
     with open(sourcefile, 'r') as f:
         source = f.read()
     f.close()
-    print("Read server content successfully!")
+    if(verbosity >= 1):
+        print("Read server content successfully!")
     
 except Exception as e:
     print("Error reading server content!\n\n", e)
@@ -37,7 +39,10 @@ def TCPstart():
     print("Listening on ", sock.getsockname())
     while True:
         user, addr = sock.accept()
-        print(user, " connected, time=", time.time())
+        if(verbosity == 2):
+            print(user, " connected, time=", time.time())
+        else if(verbosity == 1):
+            print("new connection, time =", time.time())
         data = user.recv(4096) # read first 4K of data
         user.sendall(handler(data))
         
@@ -81,13 +86,19 @@ def handler_501(data): # TODO: move error pages to separate folder
 
 def handler(data):   
     request = Request(data)
-    print("new request:\n"+str(data))
+    if(verbosity == 2):
+        print("new request:\n"+str(data))
+    else if(verbosity == 1):
+        print("new request")
     try:
         methodhandler = getattr(current_module, 'handler_%s' % request.method) # useful hack I found
     except AttributeError:
         methodhandler = handler_501
     response = methodhandler(request)
-    print("response:\n"+str(response)+"\n")
+    if(verbosity == 2):
+        print("response:\n"+str(response)+"\n")
+    else if(verbosity == 1):
+        print("responded")
     return response
     
 TCPstart()
