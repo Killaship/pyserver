@@ -41,7 +41,7 @@ def TCPstart():
         user, addr = sock.accept()
         if(verbosity == 2):
             print(user, " connected, time=", time.time())
-        else if(verbosity == 1):
+        elif(verbosity == 1):
             print("new connection, time =", time.time())
         data = user.recv(4096) # read first 4K of data
         user.sendall(handler(data))
@@ -88,7 +88,7 @@ def handler(data):
     request = Request(data)
     if(verbosity == 2):
         print("new request:\n"+str(data))
-    else if(verbosity == 1):
+    elif(verbosity == 1):
         print("new request")
     try:
         methodhandler = getattr(current_module, 'handler_%s' % request.method) # useful hack I found
@@ -97,7 +97,7 @@ def handler(data):
     response = methodhandler(request)
     if(verbosity == 2):
         print("response:\n"+str(response)+"\n")
-    else if(verbosity == 1):
+    elif(verbosity == 1):
         print("responded")
     return response
     
