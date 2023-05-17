@@ -6,7 +6,8 @@ try:
         conf = f.readlines()
         host = conf[0].strip()
         port = int(conf[1].strip())
-        version =  str(conf[2].strip())
+        version = str(conf[2].strip())
+        sourcefile = str(conf[3].strip())
     f.close()
     print("Read config file successfully!")
     
@@ -14,6 +15,17 @@ except Exception as e:
     print("Error reading pyserver.conf!\n\n", e)
     raise SystemExit(1)
 
+try:
+    with open(sourcefile, 'r') as f:
+        source = f.read()
+    f.close()
+    print("Read server content successfully!")
+    
+except Exception as e:
+    print("Error reading server content!\n\n", e)
+    raise SystemExit(1)    
+    
+    
 def TCPstart():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # so it doesn't hog that port for another minute after the program ends
@@ -36,7 +48,7 @@ def handler(data):
         b"Content-Type: text/html\r\n"
     ])
     bline = b"\r\n"
-    body = b"test, hello!"
+    body = bytes(source, "utf-8")
     return b"".join([response, header, bline, body])
 
     
