@@ -36,7 +36,8 @@ def TCPstart():
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # so it doesn't hog that port for another minute after the program ends
     sock.bind((host, port))
     sock.listen(5) # normal max is 5 users queued
-    print("Listening on ", sock.getsockname())
+    if(verbosity >= 1):
+        print("Listening on ", sock.getsockname())
     while True:
         user, addr = sock.accept()
         if(verbosity == 2):
