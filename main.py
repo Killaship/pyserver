@@ -96,7 +96,7 @@ def handler_GET(request):
             body = bytes(str(html.read()))
     else:
         response = b"HTTP/1.1 404 Not Found\r\n"
-        body = b"<b><h1>HTTP 404: Not Found</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>""
+        body = b"<b><h1>HTTP 404: Not Found</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
     
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
