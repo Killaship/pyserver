@@ -57,31 +57,29 @@ class Request:
             self.uri = chunks[1].decode()
         if(len(chunks) > 2):
             self.httpver = chunks[2].decode()
-class Handlers:
-    def handler_GET(data):
-        response = b"HTTP/1.1 200 OK\r\n"
-        header = b"".join([
-            bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
-            b"Content-Type: text/html\r\n"
-        ])
-        bline = b"\r\n"
-        body = bytes(source, "utf-8")
-        return b"".join([response, header, bline, body])
+def handler_GET(data):
+    response = b"HTTP/1.1 200 OK\r\n"
+    header = b"".join([
+        bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
+        b"Content-Type: text/html\r\n"
+    ])
+    bline = b"\r\n"
+    body = bytes(source, "utf-8")
+    return b"".join([response, header, bline, body])
 
-    def handler_501(data): # TODO: move error pages to separate folder
-        response = b"HTTP/1.1 501 Not Implemented\r\n"
-        header = b"".join([
-            bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
-            b"Content-Type: text/html\r\n"
-        ])
-        bline = b"\r\n"
-        body = b"<b><h1>HTTP 501: Not Implemented</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
-        return b"".join([response, header, bline, body])
+def handler_501(data): # TODO: move error pages to separate folder
+    response = b"HTTP/1.1 501 Not Implemented\r\n"
+    header = b"".join([
+        bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
+        b"Content-Type: text/html\r\n"
+    ])
+    bline = b"\r\n"
+    body = b"<b><h1>HTTP 501: Not Implemented</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
+    return b"".join([response, header, bline, body])
 
 
 def handler(data):   
     request = Request(data)
-    handlers = Handlers
     try:
         methodhandler = (current_module, 'handler_%s' % request.method) # useful hack I found
     except AttributeError:
