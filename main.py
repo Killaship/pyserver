@@ -6,9 +6,10 @@ try:
         conf = f.readlines()
         host = conf[0].strip()
         port = int(conf[1].strip())
-        version =  int(conf[2].strip())
+        version =  conf[2].strip()
     f.close()
     print("Read config file successfully!")
+    
 except Exception as e:
     print("Error reading pyserver.conf!\n\n", e)
     raise SystemExit(1)
