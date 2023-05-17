@@ -28,4 +28,4 @@ Here's a full overview:
 - The fourth line contains the location of the source file to be served.
 - The fifth line contains the verbosity level of the server program. 2 is full debug, everything printed out. 1 is basic logging. 0 prints out nothing at all, besides errors.
 
-The server version is A, nice to know, and B, goes in the HTTP response sent to a client.
+Please see the text files under ```logs/examples``` for examples of the server verbosity settings.
