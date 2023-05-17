@@ -1,0 +1,17 @@
+Read config file successfully!
+Read server content successfully!
+Listening on  ('0.0.0.0', 80)
+<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 80), raddr=('127.0.0.1', 42432)>  connected, time = 1684333718.1373496
+new request:
+b'GET / HTTP/1.1\r\nX-Forwarded-For: 216.226.127.16, 10.115.12.158\r\nX-Forwarded-Proto: https\r\nHost: ungenteel-gopher-6769.dataplicity.io\r\nConnection: close\r\nX-Forwarded-Port: 443\r\nX-Amzn-Trace-Id: Root=1-6464e496-2197494467ebf6bf4a31116c\r\ncache-control: max-age=0\r\nsec-ch-ua: "Chromium";v="112", "Google Chrome";v="112", "Not:A-Brand";v="99"\r\nsec-ch-ua-mobile: ?0\r\nsec-ch-ua-platform: "Chrome OS"\r\nupgrade-insecure-requests: 1\r\nuser-agent: Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36\r\naccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r\nsec-fetch-site: cross-site\r\nsec-fetch-mode: navigate\r\nsec-fetch-user: ?1\r\nsec-fetch-dest: document\r\nreferer: https://www.dataplicity.com/\r\naccept-encoding: gzip, deflate, br\r\naccept-language: en-US,en;q=0.9,ar;q=0.8,ja;q=0.7\r\n\r\n'
+response:
+b'HTTP/1.1 200 OK\r\nServer: pyserver1.0.0\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE html>\n<html>\n<head>\n  <title>pyserver test</title>\n<i><u>pyserver test HTML page</i></u>\n</head>\n<body>\n\n  <h1>Page <i>Heading</i></h1>\n  <p><b>this <i>is</i> a</b> <u>paragraph!</u></p>\n  <br><br><br>\n  <p>(C) 2023 Killaship     <a href="https://github.com/Killaship/pyserver">github link</a></p>\n\n</body>\n</html>\n\n'
+
+connection closed, time = 1684333718.1396272
+<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 80), raddr=('127.0.0.1', 42434)>  connected, time = 1684333718.6625185
+new request:
+b'GET /favicon.ico HTTP/1.1\r\nX-Forwarded-For: 216.226.127.16, 10.115.12.158\r\nX-Forwarded-Proto: https\r\nHost: ungenteel-gopher-6769.dataplicity.io\r\nConnection: close\r\nX-Forwarded-Port: 443\r\nX-Amzn-Trace-Id: Root=1-6464e496-1626e3653c79ed4738ec8d50\r\nsec-ch-ua: "Chromium";v="112", "Google Chrome";v="112", "Not:A-Brand";v="99"\r\nsec-ch-ua-mobile: ?0\r\nuser-agent: Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36\r\nsec-ch-ua-platform: "Chrome OS"\r\naccept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8\r\nsec-fetch-site: same-origin\r\nsec-fetch-mode: no-cors\r\nsec-fetch-dest: image\r\nreferer: https://ungenteel-gopher-6769.dataplicity.io/\r\naccept-encoding: gzip, deflate, br\r\naccept-language: en-US,en;q=0.9,ar;q=0.8,ja;q=0.7\r\n\r\n'
+response:
+b'HTTP/1.1 200 OK\r\nServer: pyserver1.0.0\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE html>\n<html>\n<head>\n  <title>pyserver test</title>\n<i><u>pyserver test HTML page</i></u>\n</head>\n<body>\n\n  <h1>Page <i>Heading</i></h1>\n  <p><b>this <i>is</i> a</b> <u>paragraph!</u></p>\n  <br><br><br>\n  <p>(C) 2023 Killaship     <a href="https://github.com/Killaship/pyserver">github link</a></p>\n\n</body>\n</html>\n\n'
+
+connection closed, time = 1684333718.664075
