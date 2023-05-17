@@ -11,7 +11,7 @@ except Exception as e:
     raise SystemExit(1)
 
 def log(input):
-    logfile.write(f"\n[{str(time.time()).strip(" ")}]\n{str(input)}\n")
+    logfile.write(f"\n[{str(time.time().strip(' '))}]\n{str(input)}\n")
     
 
 try:
