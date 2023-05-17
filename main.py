@@ -2,25 +2,14 @@ import socket
 import time
 import sys
 
-def contprompt():
-    prompt = input("Continue? [y/N]").lower()
-    if(prompt == "n"):
-        raise SystemExit(1)
-        return 1
-    elif(prompt == "y"):
-        return 0
-    else:
-        print("Invalid response!")
-        return 1
+
 
 current_module = sys.modules[__name__]
 try:
     logfile = open(f'logs/std.log-{str(time.time()).strip(" ")}', 'w')
 except Exception as e:
     print("Error opening log file!\n\n", e)
-    while contprompt():
-        pass
-    return
+    raise SystemExit(1)
 
 def log(input):
     logfile.write(f"\n[{str(time.time()).strip(' ')}]\n{str(input)}\n")
