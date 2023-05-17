@@ -16,6 +16,7 @@ except Exception as e:
 
 def TCPstart():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # so it doesn't hog that port for another minute after the program ends
     sock.bind((host, port))
     sock.listen(5) # normal max is 5 users queued
     print("Listening on ", sock.getsockname())
