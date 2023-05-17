@@ -11,7 +11,7 @@ except Exception as e:
     raise SystemExit(1)
 
 def log(input):
-    logfile.write(f"\n{str(input)}\n")
+    logfile.write(f"\n[{str(time.time()).strip(" ")}]\n{str(input)}\n")
     
 
 try:
@@ -114,6 +114,7 @@ def handler(data):
     except AttributeError:
         methodhandler = handler_501
     response = methodhandler(request)
+    log(f"response:\n{str(response)}\n")
     if(verbosity == 2):
         print("response:\n"+str(response)+"\n")
     elif(verbosity == 1):
