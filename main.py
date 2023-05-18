@@ -91,6 +91,39 @@ class Request:
             self.httpver = chunks[2].decode()
             
 
+def handler_HEAD(request):
+    type = "text/html"
+    loc = request.uri.strip('/')
+    file_size = 696969
+    if(os.path.exists(loc)):
+        file_size = os.path.getsize(loc)
+        response = b"HTTP/1.1 200 OK\r\n"
+        with open(loc, 'rb') as file:
+            body = file.read()
+            type = mimetypes.guess_type(loc)[0] or 'text/html'
+        
+    else:
+        response = b"HTTP/1.1 404 Not Found\r\n"
+        body = b"<b><h1>HTTP 404: Not Found</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
+    
+    header = b"".join([
+        bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
+        bytes(str("Content-Type: "+type+"\r\n"), "utf-8")
+    ])
+    bline = b"\r\n"
+
+    if(verbosity == 2):
+        if(file_size < maxreplog):  # if file size is under max allowed to print
+            log(f"response:\n{str(response+header)}\n")
+            print("response:\n"+str(response+header)+"\n")
+        else:
+            log(f"response:\n{str(response+header)}\n")
+            print("response:\n"+str(response+header)+"\n")
+    elif(verbosity == 1):
+        print("responded")    
+    
+    return b"".join([response, header]) # HEAD requests don't have bodies, but they return headers as if they were a GET request
+            
             
 def handler_GET(request):
     type = "text/html"
