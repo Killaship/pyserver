@@ -2,6 +2,7 @@ import socket
 import time
 import sys
 import os
+import mimetypes
 
 implementedmethods = "Allow: OPTIONS, GET\r\n"
 current_module = sys.modules[__name__]
@@ -92,15 +93,17 @@ def handler_GET(request):
     loc = request.uri.strip('/')
     if(os.path.exists(loc)):
         response = b"HTTP/1.1 200 OK\r\n"
-        with open(loc, 'r') as html:
-            body = bytes(html.read(), "utf-8")
+        with open(loc, 'r') as file:
+            body = bytes(file.read(), "utf-8")
+            type = mimetypes.guess_type(file)[0] or 'text/html'
+        
     else:
         response = b"HTTP/1.1 404 Not Found\r\n"
         body = b"<b><h1>HTTP 404: Not Found</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
     
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
-        b"Content-Type: text/html\r\n"
+        bytes(str("Content-Type: text/html"+type+"\r\n", "utf-8")
     ])
     bline = b"\r\n"
     
@@ -117,7 +120,7 @@ def handler_501(request):
     return b"".join([response, header, bline, body])
 
 def handler_OPTIONS(request): 
-    response = b"HTTP/1.1 501 Not Implemented\r\n"
+    response = b"HTTP/1.1 200 OK\r\n"
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
         b"Content-Type: text/html\r\n", bytes(implementedmethods, 'utf-8')
