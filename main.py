@@ -97,6 +97,7 @@ def handler_GET(request):
         with open(loc, 'r') as file:
             body = file.read()
             type = mimetypes.guess_type(file)[0] or 'text/html'
+            print(type)
         
     else:
         response = b"HTTP/1.1 404 Not Found\r\n"
