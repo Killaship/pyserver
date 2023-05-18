@@ -3,7 +3,7 @@ import time
 import sys
 import os
 
-
+implementedoptions = "Allow: OPTIONS, GET"
 current_module = sys.modules[__name__]
 try:
     logfile = open(f'logs/std.log-{str(time.time()).strip(" ")}', 'w')
@@ -106,7 +106,7 @@ def handler_GET(request):
     
     return b"".join([response, header, bline, body])
 
-def handler_501(request): # TODO: move error pages to separate folder
+def handler_501(request):
     response = b"HTTP/1.1 501 Not Implemented\r\n"
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
@@ -116,6 +116,15 @@ def handler_501(request): # TODO: move error pages to separate folder
     body = b"<b><h1>HTTP 501: Not Implemented</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
     return b"".join([response, header, bline, body])
 
+def handler_OPTIONS(request): 
+    response = b"HTTP/1.1 501 Not Implemented\r\n"
+    header = b"".join([
+        bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
+        b"Content-Type: text/html\r\n", bytes(implementedmethods, 'utf-8')
+    ])
+    bline = b"\r\n"
+    body = b""
+    return b"".join([response, header, bline, body])
 
 def handler(data):   
     request = Request(data)
