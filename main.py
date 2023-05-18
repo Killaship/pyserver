@@ -117,8 +117,8 @@ def handler_GET(request):
             log(f"response:\n{str(response+header+bline+body)}\n")
             print("response:\n"+str(response+header+bline+body)+"\n")
         else:
-            log(f"response:\n{str(response+header+bline)}[rest truncated for size]\n")
-            print("response:\n"+str(response+header+bline)+"[rest truncated for size]\n")
+            log(f"response:\n{str(response+header+bline+body[0:maxreplog])}[rest truncated for size]\n")
+            print("response:\n"+str(response+header+bline+body[0:maxreplog])+"[rest truncated for size]\n")
     elif(verbosity == 1):
         print("responded")    
     
@@ -134,14 +134,10 @@ def handler_501(request):
     body = b"<b><h1>HTTP 501: Not Implemented</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
     
     if(verbosity == 2):
-        if(file_size < maxreplog):  # if file size is under max allowed to print
-            log(f"response:\n{str(response+header+bline+body)}\n")
-            print("response:\n"+str(response+header+bline+body)+"\n")
-        else:
-            log(f"response:\n{str(response+header+bline)}[rest truncated for size]\n")
-            print("response:\n"+str(response+header+bline)+"[rest truncated for size]\n")
+        log(f"response:\n{str(response+header+bline+body)}\n")
+        print("response:\n"+str(response+header+bline+body)+"\n")
     elif(verbosity == 1):
-        print("responded")    
+        print("responded")
 
     return b"".join([response, header, bline, body])
 
@@ -156,12 +152,8 @@ def handler_OPTIONS(request):
     
     
     if(verbosity == 2):
-        if(file_size < maxreplog):  # if file size is under max allowed to print
-            log(f"response:\n{str(response+header+bline+body)}\n")
-            print("response:\n"+str(response+header+bline+body)+"\n")
-        else:
-            log(f"response:\n{str(response+header+bline)}[rest truncated for size]\n")
-            print("response:\n"+str(response+header+bline)+"[rest truncated for size]\n")
+        log(f"response:\n{str(response+header+bline+body)}\n")
+        print("response:\n"+str(response+header+bline+body)+"\n")
     elif(verbosity == 1):
         print("responded")
         
