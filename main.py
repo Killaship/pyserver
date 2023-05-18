@@ -95,7 +95,7 @@ def handler_GET(request):
     if(os.path.exists(loc)):
         response = b"HTTP/1.1 200 OK\r\n"
         with open(loc, 'r') as file:
-            body = bytes(file.read(), 'utf-8')
+            body = file.read()
             type = mimetypes.guess_type(file)[0] or 'text/html'
         
     else:
