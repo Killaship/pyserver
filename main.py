@@ -4,6 +4,8 @@ import sys
 import os
 import mimetypes
 
+file_size = 0
+
 implementedmethods = "Allow: OPTIONS, GET\r\n"
 current_module = sys.modules[__name__]
 try:
@@ -27,6 +29,7 @@ try:
         version = str(conf[2].strip())
         sourcefile = str(conf[3].strip())
         verbosity = int(conf[4].strip())
+        maxreplog = int(conf[5].strip())
     f.close()
     if(verbosity >= 1):
         print("Read config file successfully!")
@@ -92,6 +95,7 @@ class Request:
 def handler_GET(request):
     type = "text/html"
     loc = request.uri.strip('/')
+    file_size = os.path.getsize(request.uri)
     if(os.path.exists(loc)):
         response = b"HTTP/1.1 200 OK\r\n"
         with open(loc, 'rb') as file:
@@ -107,6 +111,16 @@ def handler_GET(request):
         bytes(str("Content-Type: "+type+"\r\n"), "utf-8")
     ])
     bline = b"\r\n"
+
+    if(verbosity == 2):
+        if(file_size < maxreplog):  # if file size is under max allowed to print
+            log(f"response:\n{str(response+header+bline+body)}\n")
+            print("response:\n"+str(response+header+bline+body)+"\n")
+        else:
+            log(f"response:\n{str(response+header+bline)}[rest truncated for size]\n")
+            print("response:\n"+str(response+header+bline)+"[rest truncated for size]\n")
+    elif(verbosity == 1):
+        print("responded")    
     
     return b"".join([response, header, bline, body])
 
@@ -118,6 +132,17 @@ def handler_501(request):
     ])
     bline = b"\r\n"
     body = b"<b><h1>HTTP 501: Not Implemented</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
+    
+    if(verbosity == 2):
+        if(file_size < maxreplog):  # if file size is under max allowed to print
+            log(f"response:\n{str(response+header+bline+body)}\n")
+            print("response:\n"+str(response+header+bline+body)+"\n")
+        else:
+            log(f"response:\n{str(response+header+bline)}[rest truncated for size]\n")
+            print("response:\n"+str(response+header+bline)+"[rest truncated for size]\n")
+    elif(verbosity == 1):
+        print("responded")    
+
     return b"".join([response, header, bline, body])
 
 def handler_OPTIONS(request): 
@@ -128,6 +153,18 @@ def handler_OPTIONS(request):
     ])
     bline = b"\r\n"
     body = b""
+    
+    
+    if(verbosity == 2):
+        if(file_size < maxreplog):  # if file size is under max allowed to print
+            log(f"response:\n{str(response+header+bline+body)}\n")
+            print("response:\n"+str(response+header+bline+body)+"\n")
+        else:
+            log(f"response:\n{str(response+header+bline)}[rest truncated for size]\n")
+            print("response:\n"+str(response+header+bline)+"[rest truncated for size]\n")
+    elif(verbosity == 1):
+        print("responded")
+        
     return b"".join([response, header, bline, body])
 
 def handler(data):   
@@ -142,11 +179,8 @@ def handler(data):
     except AttributeError:
         methodhandler = handler_501
     response = methodhandler(request)
-    log(f"response:\n{str(response)}\n")
-    if(verbosity == 2):
-        print("response:\n"+str(response)+"\n")
-    elif(verbosity == 1):
-        print("responded")
+    
+
     return response
 
 
