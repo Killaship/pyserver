@@ -108,7 +108,7 @@ def handler_GET(request):
     ])
     bline = b"\r\n"
     
-    return b"".join([response, header, bline, bytes(body)])
+    return b"".join([response, header, bline, body])
 
 def handler_501(request):
     response = b"HTTP/1.1 501 Not Implemented\r\n"
