@@ -90,14 +90,13 @@ class Request:
 
             
 def handler_GET(request):
-    type = "text/html"
+    type = b"text/html"
     loc = request.uri.strip('/')
     if(os.path.exists(loc)):
         response = b"HTTP/1.1 200 OK\r\n"
         with open(loc, 'rb') as file:
             body = file.read()
-            type = mimetypes.guess_type(file)[0] or 'text/html'
-            print(type)
+            type = mimetypes.guess_type(file)[0] or b'text/html'
         
     else:
         response = b"HTTP/1.1 404 Not Found\r\n"
