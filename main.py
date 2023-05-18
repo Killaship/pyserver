@@ -95,8 +95,9 @@ class Request:
 def handler_GET(request):
     type = "text/html"
     loc = request.uri.strip('/')
-    file_size = os.path.getsize(loc)
+    
     if(os.path.exists(loc)):
+        file_size = os.path.getsize(loc)
         response = b"HTTP/1.1 200 OK\r\n"
         with open(loc, 'rb') as file:
             body = file.read()
