@@ -104,7 +104,7 @@ def handler_GET(request):
     
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
-        bytes(str("Content-Type: text/html"+type+"\r\n", "utf-8"))
+        bytes(str("Content-Type: text/html"+type+"\r\n"), "utf-8")
     ])
     bline = b"\r\n"
     
