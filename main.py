@@ -3,7 +3,7 @@ import time
 import sys
 import os
 
-implementedoptions = "Allow: OPTIONS, GET"
+implementedmethods = "Allow: OPTIONS, GET"
 current_module = sys.modules[__name__]
 try:
     logfile = open(f'logs/std.log-{str(time.time()).strip(" ")}', 'w')
