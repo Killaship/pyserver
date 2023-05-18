@@ -90,6 +90,7 @@ class Request:
 
             
 def handler_GET(request):
+    type = "text/html"
     loc = request.uri.strip('/')
     if(os.path.exists(loc)):
         response = b"HTTP/1.1 200 OK\r\n"
