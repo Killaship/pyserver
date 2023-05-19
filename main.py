@@ -6,7 +6,7 @@ import mimetypes
 
 file_size = 0
 
-implementedmethods = "Allow: OPTIONS, GET\r\n"
+implementedmethods = "Allow: OPTIONS, GET, HEAD\r\n"
 current_module = sys.modules[__name__]
 try:
     logfile = open(f'logs/std.log-{str(time.time()).strip(" ")}', 'w')
@@ -108,7 +108,8 @@ def handler_HEAD(request):
     
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
-        bytes(str("Content-Type: "+type+"\r\n"), "utf-8")
+        bytes(str("Content-Type: "+type+"\r\n"), "utf-8"), 
+        b"Access-Control-Allow-Origin: *\r\n"
     ])
     bline = b"\r\n"
 
@@ -142,7 +143,8 @@ def handler_GET(request):
     
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
-        bytes(str("Content-Type: "+type+"\r\n"), "utf-8")
+        bytes(str("Content-Type: "+type+"\r\n"), "utf-8"), 
+        b"Access-Control-Allow-Origin: *\r\n"
     ])
     bline = b"\r\n"
 
@@ -162,7 +164,7 @@ def handler_501(request):
     response = b"HTTP/1.1 501 Not Implemented\r\n"
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
-        b"Content-Type: text/html\r\n"
+        b"Content-Type: text/html\r\n", b"Access-Control-Allow-Origin: *\r\n"
     ])
     bline = b"\r\n"
     body = b"<b><h1>HTTP 501: Not Implemented</b></h1><br><br><p>(C) 2023 Killaship, pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
@@ -179,7 +181,8 @@ def handler_OPTIONS(request):
     response = b"HTTP/1.1 200 OK\r\n"
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
-        b"Content-Type: text/html\r\n", bytes(implementedmethods, 'utf-8')
+        b"Content-Type: text/html\r\n", bytes(implementedmethods, 'utf-8'), 
+        b"Access-Control-Allow-Origin: *\r\n"
     ])
     bline = b"\r\n"
     body = b""
