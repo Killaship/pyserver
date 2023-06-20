@@ -9,7 +9,7 @@ file_size = 0
 implementedmethods = "Allow: OPTIONS, GET, HEAD\r\n"
 current_module = sys.modules[__name__]
 try:
-    logfile = open(f'logs/std.log-{str(time.time()).strip(" ")}', 'w')
+    logfile = open("logs/std.log-" + str(time.time()).strip(" "), 'w')
 except Exception as e:
     print("Error opening log file!\n\n", e)
     raise SystemExit(1)
