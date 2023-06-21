@@ -78,9 +78,10 @@ class Request:
         self.method = None
         self.uri = None
         self.http_version = "1.1"
-        self.parse(data)
         self.path = None
         self.params = None
+        self.parse(data)
+
     def parse(self, data):
         lines = data.split(b"\r\n")
         request = lines[0]
