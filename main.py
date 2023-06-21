@@ -90,7 +90,8 @@ class Request:
             self.uri = chunks[1].decode()
         if(len(chunks) > 2):
             self.httpver = chunks[2].decode()
-        self.path = request.uri.strip('/')
+            
+        self.path = self.uri.strip('/')
         try:
             self.params = dict([p.split('=') for p in parsed_path[4].split('&')])
         except:
