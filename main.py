@@ -94,6 +94,7 @@ class Request:
         self.path = self.uri.split("?", 1)[0].strip('/')
         try:
             self.params = dict([p.split('=') for p in parsed_path[4].split('&')])
+            print(self.params)
         except:
             self.params = {}
             
