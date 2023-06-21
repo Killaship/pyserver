@@ -164,8 +164,12 @@ def handler_GET(request):
             print("response:\n"+str(response+header+bline+body[0:maxreplog])+"[rest truncated for size]\n")
     elif(verbosity == 1):
         print("responded")    
-    
-    return b"".join([response, header, bytes(request.params), bline, body])
+    try:
+        return b"".join([response, header, bytes(request.params), bline, body])
+    except Exception as e:
+        if(verbosity >= 1):
+            print("error in sending GET request content\n", e)
+        return b"".join([response, header, bline, body])
 
 def handler_501(request):
     response = b"HTTP/1.1 501 Not Implemented\r\n"
