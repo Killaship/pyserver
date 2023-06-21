@@ -79,7 +79,8 @@ class Request:
         self.uri = None
         self.http_version = "1.1"
         self.parse(data)
-    
+        self.path = None
+        self.params = None
     def parse(self, data):
         lines = data.split(b"\r\n")
         request = lines[0]
@@ -89,11 +90,16 @@ class Request:
             self.uri = chunks[1].decode()
         if(len(chunks) > 2):
             self.httpver = chunks[2].decode()
+        self.path = request.uri.strip('/')
+        try:
+            self.params = dict([p.split('=') for p in parsed_path[4].split('&')])
+        except:
+            self.params = {}
             
 
 def handler_HEAD(request):
     type = "text/html"
-    loc = request.uri.strip('/')
+    loc = request.path
     file_size = 696969
     if(os.path.exists(loc)):
         file_size = os.path.getsize(loc)
@@ -158,7 +164,7 @@ def handler_GET(request):
     elif(verbosity == 1):
         print("responded")    
     
-    return b"".join([response, header, bline, body])
+    return b"".join([response, header, self.params, bline, body])
 
 def handler_501(request):
     response = b"HTTP/1.1 501 Not Implemented\r\n"
