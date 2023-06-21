@@ -78,7 +78,7 @@ class Request:
         self.method = None
         self.uri = None
         self.http_version = "1.1"
-        self.path = None
+        self.path = self.uri.split("?", 1)[0].strip('/')
         self.params = None
         self.parse(data)
 
@@ -92,7 +92,7 @@ class Request:
         if(len(chunks) > 2):
             self.httpver = chunks[2].decode()
             
-        self.path = self.uri.split("?", 1)[0].strip('/')
+        
         try:
             self.params = dict([p.split('=') for p in parsed_path[4].split('&')])
             print(self.params)
@@ -137,7 +137,7 @@ def handler_HEAD(request):
             
 def handler_GET(request):
     type = "text/html"
-    loc = request.uri.strip('/')
+    loc = request.uri
     file_size = 696969
     if(os.path.exists(loc)):
         file_size = os.path.getsize(loc)
