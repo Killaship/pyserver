@@ -102,6 +102,8 @@ class Request:
 def handler_HEAD(request):
     type = "text/html"
     loc = request.path
+    for(i in range(50)):
+        print(loc)
     file_size = 696969
     if(os.path.exists(loc)):
         file_size = os.path.getsize(loc)
