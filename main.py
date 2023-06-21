@@ -169,7 +169,7 @@ def handler_GET(request):
     except Exception as e:
         if(verbosity >= 1):
             print("error in sending GET request content\n", e)
-        return b"".join([response, header, bline, body])
+    return b"".join([response, header, bline, body])
 
 def handler_501(request):
     response = b"HTTP/1.1 501 Not Implemented\r\n"
