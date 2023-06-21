@@ -78,7 +78,7 @@ class Request:
         self.method = None
         self.uri = None
         self.http_version = "1.1"
-        self.path = self.uri.split("?", 1)[0].strip('/')
+        self.path = None
         self.params = None
         self.parse(data)
 
@@ -91,10 +91,9 @@ class Request:
             self.uri = chunks[1].decode()
         if(len(chunks) > 2):
             self.httpver = chunks[2].decode()
-            
-        
+        self.path = self.uri.split("?", 1)[0].strip('/')
         try:
-            self.params = dict([p.split('=') for p in parsed_path[4].split('&')])
+            self.params = dict([p.split('=') for p in self.path.split('&')])
             print(self.params)
         except:
             self.params = {}
