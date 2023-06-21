@@ -165,7 +165,7 @@ def handler_GET(request):
     elif(verbosity == 1):
         print("responded")    
     
-    return b"".join([response, header, request.params, bline, body])
+    return b"".join([response, header, bytes(request.params), bline, body])
 
 def handler_501(request):
     response = b"HTTP/1.1 501 Not Implemented\r\n"
