@@ -93,7 +93,10 @@ class Request:
             self.httpver = chunks[2].decode()
         self.path = self.uri.split("?", 1)[0].strip('/')
 
-        self.params = self.uri.split('?',1)[1]
+        try:
+            self.params = self.uri.split('?',1)[1]
+        except:
+            self.params = None
         print(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
         log(str("\n" + self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params + "\n"))
 
