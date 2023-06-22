@@ -92,11 +92,12 @@ class Request:
         if(len(chunks) > 2):
             self.httpver = chunks[2].decode()
         self.path = self.uri.split("?", 1)[0].strip('/')
-        try:
-            self.params = {} #dict([p.split('=') for p in parsed_path[4].split('&')])
-            print(self.params)
-        except:
-            self.params = {}
+
+        self.params = {} #dict([p.split('=') for p in parsed_path[4].split('&')])
+        print(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
+        logfile.write(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
+
+
             
 
 def handler_HEAD(request):
