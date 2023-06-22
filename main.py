@@ -172,7 +172,7 @@ def handler_GET(request):
     except Exception as e:
         if(verbosity >= 1):
             print("error in sending GET request content\n", e)
-            log(str("error in sending GET request content\n", str(e)))
+            logfile.write("error in sending GET request content\n", e)
     return b"".join([response, header, bline, body])
 
 def handler_501(request):
