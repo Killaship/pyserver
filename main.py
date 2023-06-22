@@ -93,9 +93,9 @@ class Request:
             self.httpver = chunks[2].decode()
         self.path = self.uri.split("?", 1)[0].strip('/')
 
-        self.params = "" #dict([p.split('=') for p in parsed_path[4].split('&')])
+        self.params = self.uri.split('?',1)[1]
         print(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
-        log(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
+        log(str("\n" + self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params + "\n"))
 
 
             
