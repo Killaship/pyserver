@@ -95,7 +95,7 @@ class Request:
 
         self.params = "" #dict([p.split('=') for p in parsed_path[4].split('&')])
         print(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
-        logfile.write(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
+        log(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
 
 
             
@@ -172,6 +172,7 @@ def handler_GET(request):
     except Exception as e:
         if(verbosity >= 1):
             print("error in sending GET request content\n", e)
+            log(str("error in sending GET request content\n", e))
     return b"".join([response, header, bline, body])
 
 def handler_501(request):
