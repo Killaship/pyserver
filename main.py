@@ -94,7 +94,7 @@ class Request:
         self.path = self.uri.split("?", 1)[0].strip('/')
 
         try:
-            self.params = self.uri.split('?',1)[1]
+            self.params = dict(item.split('=') for item in self.uri.split('?',1)[1].split('&') if item)
         except:
             self.params = ""
         print(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
