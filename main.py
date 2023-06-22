@@ -96,7 +96,7 @@ class Request:
         try:
             self.params = self.uri.split('?',1)[1]
         except:
-            self.params = None
+            self.params = ""
         print(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
         log(str("\n" + self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params + "\n"))
 
