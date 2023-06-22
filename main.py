@@ -97,8 +97,8 @@ class Request:
             self.params = dict(item.split('=') for item in self.uri.split('?',1)[1].split('&') if item)
         except:
             self.params = ""
-        print(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params))
-        log(str("\n" + self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + self.params + "\n"))
+        print(str(self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + str(self.params)))
+        log(str("\n" + self.method + "\n" + self.uri + "\n" + self.http_version + "\n" + self.path + "\n" + str(self.params) + "\n"))
 
 
             
