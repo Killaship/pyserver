@@ -152,7 +152,7 @@ def handler_GET(request):
         
     else:
         response = b"HTTP/1.1 404 Not Found\r\n"
-        body = b"<b><h1>HTTP 404: Not Found</b></h1><br><br><p>" #pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
+        body = b"<b><h1>HTTP 404: Not Found</b></h1><br><br>" #<p>pyserver project<br><a href='https://github.com/Killaship/pyserver'>github link</a></p>"
     
     header = b"".join([
         bytes(str("Server: pyserver"+version+"\r\n"), 'utf-8'),
@@ -171,7 +171,7 @@ def handler_GET(request):
     elif(verbosity == 1):
         print("responded")    
     try:
-        return b"".join([response, header, bytes(str("<br><p>"+str(request.params)+"</p><br>)<br>:)")), bline, body])
+        return b"".join([response, header, bytes(str("<br><p>"+str(request.params.keys()[0])+"</p><br>)<br>:)")), bline, body])
     except Exception as e:
         if(verbosity >= 1):
             print("error in sending GET request content\n", repr(e))
