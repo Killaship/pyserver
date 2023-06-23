@@ -171,7 +171,7 @@ def handler_GET(request):
     elif(verbosity == 1):
         print("responded")    
     try:
-        return b"".join([response, header, bytes(str("<br><p>"+str(request.params.keys()[0])+"</p><br>)<br>:)"), encoding="utf-8"), bline, body])
+        return b"".join([response, header, bytes(str("<br><p>"+str(request.params.keys()[0])+"</p><br>)<br>:)"), "utf-8"), bline, body])
     except Exception as e:
         if(verbosity >= 1):
             print("error in sending GET request content\n", repr(e))
